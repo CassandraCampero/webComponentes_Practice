@@ -1,0 +1,57 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../paper-input/paper-input.html">
+<link rel="import" href="../iron-icons/social-icons.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
+<link rel="import" href="../paper-button/paper-button.html">
+
+<dom-module id="form-component">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .button{
+        border: 1px solid black
+      }
+    </style>
+    <h2>Hello [[login.name]]!</h2>
+    
+    
+    <paper-input id="user" label="User">
+        <iron-icon icon="social:person-outline" slot="prefix"></iron-icon>
+    </paper-input>
+    <paper-input id="password" label="Password" type="password">
+      <iron-icon icon="icons:lock-outline" slot="prefix"></iron-icon>      
+    </paper-input>
+    <paper-button class="button">Login</paper-button>
+  </template>
+
+  <script>
+    /**
+     * `form-component`
+     * 
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class FormComponent extends Polymer.Element {
+      static get is() { return 'form-component'; }
+      static get properties() {
+        return {
+          login: {
+            type: Object,
+            value: ()=> {}
+          }
+        };
+      }
+      _login(){
+        const user = document.querySelector('#user');
+        const password = document.querySelector('#password')
+        this.login = ({'user', user.value}, {'passw0rd',password.value});
+      }
+    }
+
+    window.customElements.define(FormComponent.is, FormComponent);
+  </script>
+</dom-module>
